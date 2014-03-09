@@ -15,31 +15,24 @@ namespace Fuijitsu_Chess
             var startingPoint = new List<Node>();            
             var endPoint = new Node();
             var closedPositions = new List<Point>();
-            do
+            string inputFileName = args[0];
+            string outputFileName = args[1];                               
+            try
             {
-                Console.WriteLine("Please enter file name(e.g 'source') where data is read from:");
-                string inputFileName = Console.ReadLine();
-                try
+                if (inputFileName != null)
                 {
-                    if (inputFileName != null)
-                    {
-                        var startNode = new Node();
-                        GetInputData.GetDataFromFile(inputFileName, endPoint, startNode, closedPositions);                                                                       
-                        startingPoint.Add(startNode);                        
-                    }
+                    var startNode = new Node();
+                    FileHelpers.GetDataFromFile(inputFileName, endPoint, startNode, closedPositions);                                                                       
+                    startingPoint.Add(startNode);                        
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine("The file could not be read:");
-                    Console.WriteLine(e.Message);                    
-
-                } 
-            } while (startingPoint.Count < 1);
-            foreach (var pos in closedPositions)
-            {
-                Console.WriteLine(pos);
             }
-           // MoveMethods.MakePath(startingPoint, endPoint, closedPositions);           
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);                    
+            } 
+            MoveMethods.MakePath(outputFileName, startingPoint, endPoint, closedPositions);
+            Console.WriteLine("Press enter to terminate ... ");
             Console.ReadLine();
         }
 

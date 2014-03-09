@@ -32,15 +32,11 @@ namespace Fuijitsu_Chess.Main
                 }
             }
         }
-
-        public static Node MakePath(List<Node> source, Node to, List<Point> closedPositions)
+        public static Node MakePath(string outputFileName, List<Node> source, Node to, List<Point> closedPositions)
         {
-            var nextLevel = new List<Node>();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("{0}{1} is being found....", CoordinatesHelperMethods.CoordToLetter(to.Coords.X), to.Coords.Y + 1);
+            var nextLevel = new List<Node>();            
             bool newnode = true;
-            Point node = new Point();
+            var node = new Point();
             foreach (var child in source)
             {
 
@@ -50,33 +46,25 @@ namespace Fuijitsu_Chess.Main
                     if (node.X != child.Parent.Coords.X && node.Y != child.Parent.Coords.Y) newnode = true;
                     if (newnode)
                     {
-                        Console.WriteLine();
+                       /* Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("{0}{1} children are:  ", CoordinatesHelperMethods.CoordToLetter(child.Parent.Coords.X), child.Parent.Coords.Y + 1);
+                        Console.WriteLine("{0}{1} children are:  ", CoordinatesHelperMethods.CoordToLetter(child.Parent.Coords.X), child.Parent.Coords.Y + 1);*/
                         newnode = false;
                         node = child.Parent.Coords;
                     }
                 }
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.Write("{0}{1} ", CoordinatesHelperMethods.CoordToLetter(child.Coords.X), child.Coords.Y + 1);
+              /*  Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write("{0}{1} ", CoordinatesHelperMethods.CoordToLetter(child.Coords.X), child.Coords.Y + 1);*/
                 if (CoordinatesHelperMethods.CheckDestinationCoords(child, to.Coords))
-                {
-                    Console.WriteLine();
-                    Console.Write(Moves + " total moves.");
+                {   
                     CoordinatesToDestination.Reverse();
-                    Console.WriteLine();
-                    foreach (var coordinate in CoordinatesToDestination)
-                    {                        
-                        Console.Write("{0}{1} ", CoordinatesHelperMethods.CoordToLetter(coordinate.X),coordinate.Y + 1);
-                    }                    
+                    FileHelpers.WriteToFile(outputFileName, CoordinatesToDestination);
                     return child;
                 }                                  
                 nextLevel.AddRange(child.Children);
                 
             }
-            return MakePath(nextLevel, to, closedPositions);
-        }
-
-        
+            return MakePath(outputFileName, nextLevel, to, closedPositions);
+        }        
     }
 }
