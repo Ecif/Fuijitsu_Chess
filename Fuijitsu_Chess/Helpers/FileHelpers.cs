@@ -27,7 +27,7 @@ namespace Fuijitsu_Chess.Helpers
 
         public static void WriteToFile(string outPutFileName, List<Point> coordinatesToDestination)
         {
-            using (var file = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SourceFiles\", outPutFileName), Encoding.a))
+            using (var file = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SourceFiles\", outPutFileName)))
             {
                 file.WriteLine(MoveMethods.Moves);
                 foreach (var coord in coordinatesToDestination)
