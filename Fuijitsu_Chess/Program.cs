@@ -1,27 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Fuijitsu_Chess.Tree;
+using System.IO;
+using Fuijitsu_Chess.Main;
+using Fuijitsu_Chess.Helpers;
+
 
 namespace Fuijitsu_Chess
 {
     class Program
     {
         static void Main(string[] args)
-        {            
-            List<Node> startPoint = new List<Node>();
-
-            Node startNode = new Node
+        {
+            var startingPoint = new List<Node>();            
+            var endPoint = new Node();
+            var closedPositions = new List<Point>();
+            do
             {
-                Coords = new Point {X = 0, Y = 0},
-                Parent = null
-            };
-            startPoint.Add(startNode);
+                Console.WriteLine("Please enter file name(e.g 'source') where data is read from:");
+                string inputFileName = Console.ReadLine();
+                try
+                {
+                    if (inputFileName != null)
+                    {
+                        var startNode = new Node();
+                        GetInputData.GetDataFromFile(inputFileName, endPoint, startNode, closedPositions);                                                                       
+                        startingPoint.Add(startNode);                        
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("The file could not be read:");
+                    Console.WriteLine(e.Message);                    
 
-            MoveMethods.MakePath( startPoint ,new Point { X = 4, Y =5  });
-            Console.WriteLine();
-            Console.Write(MoveMethods.Moves + " total moves.");
+                } 
+            } while (startingPoint.Count < 1);
+            foreach (var pos in closedPositions)
+            {
+                Console.WriteLine(pos);
+            }
+           // MoveMethods.MakePath(startingPoint, endPoint, closedPositions);           
             Console.ReadLine();
         }
+
+
     }
 }

@@ -44,10 +44,11 @@
   <ItemGroup>
     <Compile Include="Chess_pieces\Knight\KnightPositions.cs" />
     <Compile Include="Helpers\CoordinatesHelperMethods.cs" />
+    <Compile Include="Main\GetInputData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tree\MoveMethods.cs" />
-    <Compile Include="Tree\Node.cs" />
+    <Compile Include="Main\MoveMethods.cs" />
+    <Compile Include="Main\Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

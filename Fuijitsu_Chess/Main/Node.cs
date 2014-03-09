@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace Fuijitsu_Chess.Tree
+namespace Fuijitsu_Chess.Main
 {
     public class Node
     {

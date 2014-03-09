@@ -1,22 +1,35 @@
 ﻿
+using System;
 using System.Drawing;
-using Fuijitsu_Chess.Tree;
+using Fuijitsu_Chess.Main;
 
 namespace Fuijitsu_Chess.Helpers
 {
     public static class CoordinatesHelperMethods
     {
-        public static int LetterToCoord(string letterString)
+        public static Point? LetterToCoord(string letterString)
         {
-            if (letterString.Contains("A")) return 0;
-            else if (letterString.Contains("B")) return 1;
-            else if (letterString.Contains("C")) return 2;
-            else if (letterString.Contains("D")) return 3;
-            else if (letterString.Contains("E")) return 4;
-            else if (letterString.Contains("F")) return 5;
-            else if (letterString.Contains("G")) return 6;
-            else if (letterString.Contains("H")) return 7;
-            return -101;            
+            var coordinates = new Point();
+
+            try
+            {
+                if (letterString.Contains("A")) coordinates.X = 0;
+                else if (letterString.Contains("B")) coordinates.X = 1;
+                else if (letterString.Contains("C")) coordinates.X = 2;
+                else if (letterString.Contains("D")) coordinates.X = 3;
+                else if (letterString.Contains("E")) coordinates.X = 4;
+                else if (letterString.Contains("F")) coordinates.X = 5;
+                else if (letterString.Contains("G")) coordinates.X = 6;
+                else if (letterString.Contains("H")) coordinates.X = 7;
+                else return null;
+                coordinates.Y = Convert.ToInt32(letterString.Substring(1, 1)) - 1;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Wrong data input in file.");
+                Console.WriteLine(e.Message);
+            }            
+            return coordinates;         
         }
         public static string CoordToLetter(int i)
         {
@@ -59,11 +72,13 @@ namespace Fuijitsu_Chess.Helpers
         {
             if (child.Coords == to)
             {
+                Console.WriteLine();
                 var currentNode = child;
                 do
                 {
                     var parent = currentNode.Parent;
-                    currentNode = parent;
+                    MoveMethods.CoordinatesToDestination.Add(currentNode.Coords);
+                    currentNode = parent;                    
                     MoveMethods.Moves++;
                 } while (currentNode.Parent != null);
                 return true;
