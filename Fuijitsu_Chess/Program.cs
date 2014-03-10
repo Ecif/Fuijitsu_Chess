@@ -14,26 +14,26 @@ namespace Fuijitsu_Chess
             var startingPoint = new List<Node>();            
             var endPoint = new Node();
             var closedPositions = new List<Point>();
-            var chessPiece = new CurrentPiece();
-            string outputFileName = null;                            
+            var chessPiece = new CurrentPiece();             
             try
             {
                 string inputFileName = args[0];
-                outputFileName = args[1];
+                string outputFileName = args[1];
                 if (inputFileName != null)
                 {
                     var startNode = new Node();
                     FileHelpers.GetDataFromFile(inputFileName, endPoint, startNode, closedPositions, chessPiece);                                          
                     startingPoint.Add(startNode);
                 }
+                if (MoveMethods.FindPath(outputFileName, startingPoint, endPoint, closedPositions, chessPiece))
+                    Console.WriteLine("Paths successfully found.");    
             }
             catch (Exception e)
             {
                 Console.WriteLine("Missing or false parameters!");
                 Console.WriteLine(e.Message);                    
             }
-            if (MoveMethods.FindPath(outputFileName, startingPoint, endPoint, closedPositions, chessPiece))
-                Console.WriteLine("Paths successfully found.");           
+                   
             Console.WriteLine("Press enter to terminate ... ");
             Console.ReadLine();   
                       
