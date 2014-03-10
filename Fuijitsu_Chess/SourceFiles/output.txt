@@ -1,0 +1,7 @@
+﻿Queen solution 1:
+2
+A8, H8
+
+Queen solution 2:
+2
+H1, H8

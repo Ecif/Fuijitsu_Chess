@@ -27,7 +27,7 @@ namespace Fuijitsu_Chess.Helpers
             piece.ChessPiece = input[5].Contains("-") ? "Knight" : input[5];
             try
             {
-                Board.AxisX = Convert.ToInt32(input[1]);
+                Board.AxisX = Convert.ToInt32(input[0]);
                 Board.AxisY = Convert.ToInt32(input[1]);
             }
             catch (Exception)
