@@ -1,12 +1,31 @@
 Fuijitsu_Chess
 ==============
-
 Have to find chess piece's path to destination point on board.
-I've included input and output file samples within Fuijitsu_Chess/SourceFiles/ folder.
+I've included input and output file samples within "~\Fuijitsu_Chess\SourceFiles" folder.
 
-Here's what sample input file(input.txt) contains:
+*IMPORTANT!
+After building project, add "SourceFiles" folder to your build folder like this:
+"~\Fuijitsu_Chess\bin\Debug\SourceFiles". 
+All input files are read from that folder and output files are found from that folder.
+E.g:
+"~\Fuijitsu_Chess\bin\Debug\SourceFiles\input.txt" 
+"~\Fuijitsu_Chess\bin\Debug\SourceFiles\output.txt"
+Parameters for running the application:
+"Fuijitsu_Chess.exe args[0] args[1]"
+args[0] = input file name
+args[1] = output file name
+
+
+
+
+
+
+INTRODUCTION FOR INPUT AND OUTPUT FILES:
+------------------------------------------------------------------------------------------
 Maximum board size: 8x8
 Chess pieces: Knight(default), King, Queen, Rook, Bishop
+
+Here's what sample input file(input.txt) contains:
 ----(input.txt)-----
 8           [ First row is for board X-axis length. ]
 8           [ Second row is for board Y-axis length. ]
@@ -25,4 +44,19 @@ H8  [ Always REQUIRED ]
 B2  [ NOT required ]
 -   [ NOT required(default is "Knight"), using "-" instead ]
 ---(input.txt end)--
+
+
+If output file name already exists, then all data will be appended. 
+Otherwise, new output file is created.
+Here's what sample output file(output.txt) contains:
+----(output.txt)-----
+Queen solution 1: [ Chess piece type and a solution number ]
+2                 [ Number of moves ]
+A8, H8            [ Move positions ]
+
+Queen solution 2: 
+2
+H1, H8
+---(output.txt end)--
+------------------------------------------------------------------------------------------
 
