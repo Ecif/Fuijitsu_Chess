@@ -1,4 +1,28 @@
 Fuijitsu_Chess
 ==============
 
-Have to find knight's destination point on chess board.
+Have to find chess piece's path to destination point on board.
+I've included input and output file samples within Fuijitsu_Chess/SourceFiles/ folder.
+
+Here's what sample input file(input.txt) contains:
+Maximum board size: 8x8
+Chess pieces: Knight(default), King, Queen, Rook, Bishop
+----(input.txt)-----
+8           [ First row is for board X-axis length. ]
+8           [ Second row is for board Y-axis length. ]
+A1          [ REQUIRED. Starting point coordinates. ]
+H8          [ REQUIRED. Destionation point coordinates. ]
+B2, D7, G6  [ Blocked positions on chess board. ]
+Queen       [ Chess piece type ]
+---(input.txt end)--
+
+Do NOT skip ANY rows. If you do not wish to enter any data, use "-" instead. For Example:
+----(input.txt)-----
+-   [ NOT required, using "-" instead ]
+-   [ NOT required, using "-" instead ]
+A1  [ Always REQUIRED ]
+H8  [ Always REQUIRED ]
+B2  [ NOT required ]
+-   [ NOT required(default is "Knight"), using "-" instead ]
+---(input.txt end)--
+
