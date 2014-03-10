@@ -7,6 +7,7 @@ namespace Fuijitsu_Chess.Main
     {
         public Point Coords;
         public Node Parent;
-        public List<Node> Children = new List<Node>();       
+        public List<Node> Children = new List<Node>();
+        public bool IsForbiddenPath = false;
     }
 }

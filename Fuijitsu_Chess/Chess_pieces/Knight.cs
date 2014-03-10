@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace Fuijitsu_Chess.Chess_pieces.Knight
+namespace Fuijitsu_Chess.Chess_pieces
 {
-    public static class KnightPositions
+    public static class Knight
     {
         public static readonly List<Point> Positions = new List<Point>()
         {

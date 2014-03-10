@@ -42,9 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chess_pieces\Knight\KnightPositions.cs" />
+    <Compile Include="Chess_pieces\Bishop.cs" />
+    <Compile Include="Chess_pieces\King.cs" />
+    <Compile Include="Chess_pieces\Knight.cs" />
+    <Compile Include="Chess_pieces\Queen.cs" />
+    <Compile Include="Chess_pieces\Rook.cs" />
+    <Compile Include="Helpers\Board.cs" />
     <Compile Include="Helpers\CoordinatesHelperMethods.cs" />
+    <Compile Include="Helpers\CurrentPiece.cs" />
     <Compile Include="Helpers\FileHelpers.cs" />
+    <Compile Include="Helpers\PositionsHelpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main\MoveMethods.cs" />
