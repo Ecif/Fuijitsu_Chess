@@ -14,11 +14,12 @@ namespace Fuijitsu_Chess
             var startingPoint = new List<Node>();            
             var endPoint = new Node();
             var closedPositions = new List<Point>();
-            var chessPiece = new CurrentPiece();            
-            string inputFileName = args[0];
-            string outputFileName = args[1];                               
+            var chessPiece = new CurrentPiece();
+            string outputFileName = null;                            
             try
             {
+                string inputFileName = args[0];
+                outputFileName = args[1];
                 if (inputFileName != null)
                 {
                     var startNode = new Node();
@@ -28,7 +29,7 @@ namespace Fuijitsu_Chess
             }
             catch (Exception e)
             {
-                Console.WriteLine("The file could not be read:");
+                Console.WriteLine("Missing or false parameters!");
                 Console.WriteLine(e.Message);                    
             }
             if (MoveMethods.FindPath(outputFileName, startingPoint, endPoint, closedPositions, chessPiece))
