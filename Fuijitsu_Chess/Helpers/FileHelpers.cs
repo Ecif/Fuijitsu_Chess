@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fuijitsu_Chess.Chess_pieces;
 using Fuijitsu_Chess.Main;
 
 namespace Fuijitsu_Chess.Helpers
 {
     class FileHelpers
     {
-        private static int _numberOfOutput = 1;
+        private static int _numberOfSolutions = 1;
         public static void GetDataFromFile(string inputFileName, Node endPoint, Node startNode, List<Point> closedPositions, CurrentPiece piece)
         {
             string[] input = File.ReadAllLines(Path.IsPathRooted(inputFileName) ? inputFileName : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SourceFiles\", inputFileName));
@@ -37,16 +34,16 @@ namespace Fuijitsu_Chess.Helpers
             {
                 Board.AxisX = 8;
                 Board.AxisY = 8;
-            }
-            Console.WriteLine(piece.ChessPiece);
+            }            
 
         }
 
-        public static void WriteToFile(string outPutFileName, List<Point> coordinatesToDestination)
+        public static void WriteToFile(string outPutFileName, List<Point> coordinatesToDestination, CurrentPiece chessPiece)
         {
-            using (var file = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SourceFiles\", _numberOfOutput + outPutFileName )))
+            using (var file = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SourceFiles\", outPutFileName ), true))
             {
-                file.WriteLine(MoveMethods.Moves);
+                file.WriteLine(chessPiece.ChessPiece + " solution {0}:", _numberOfSolutions);
+                file.WriteLine(MoveMethods.MinMoves);
                 foreach (var coord in coordinatesToDestination)
                 {
                     string coordsInLetter;
@@ -55,17 +52,10 @@ namespace Fuijitsu_Chess.Helpers
                     else coordsInLetter = CoordinatesHelperMethods.CoordToLetter(coord.X) + (coord.Y + 1);
                     file.Write(coordsInLetter);
                 }
-                _numberOfOutput++;
+                file.WriteLine();
+                file.WriteLine();              
             }
-                        
-            Console.Write(MoveMethods.Moves + " total moves.");
-
-            Console.WriteLine();
-            foreach (var coordinate in coordinatesToDestination)
-            {
-                Console.Write("{0}{1} ", CoordinatesHelperMethods.CoordToLetter(coordinate.X), coordinate.Y + 1);
-            }
-            Console.WriteLine();
+            _numberOfSolutions++;             
         }
 
     }

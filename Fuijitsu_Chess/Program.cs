@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using Fuijitsu_Chess.Chess_pieces;
 using Fuijitsu_Chess.Main;
 using Fuijitsu_Chess.Helpers;
 
@@ -33,8 +31,8 @@ namespace Fuijitsu_Chess
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);                    
             }
-            MoveMethods.MakePath(outputFileName, startingPoint, endPoint, closedPositions, chessPiece);
-            
+            if (MoveMethods.FindPath(outputFileName, startingPoint, endPoint, closedPositions, chessPiece))
+                Console.WriteLine("Paths successfully found.");           
             Console.WriteLine("Press enter to terminate ... ");
             Console.ReadLine();   
                       

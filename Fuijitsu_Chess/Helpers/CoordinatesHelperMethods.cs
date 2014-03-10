@@ -68,11 +68,12 @@ namespace Fuijitsu_Chess.Helpers
             return letter;
         }
 
-        public static bool CheckDestinationCoords(Node child, Point to)
+        public static bool CheckDestinationCoords(Node child, Point to, string outputFileName, CurrentPiece chessPiece)
         {
             if (child.Coords == to)
             {
-                Console.WriteLine();
+                MoveMethods.Moves = 0;
+                MoveMethods.CoordinatesToDestination.Clear();                
                 var currentNode = child;
                 do
                 {
@@ -81,6 +82,11 @@ namespace Fuijitsu_Chess.Helpers
                     currentNode = parent;                    
                     MoveMethods.Moves++;
                 } while (currentNode.Parent != null);
+                if (MoveMethods.MinMoves == 0) MoveMethods.MinMoves = MoveMethods.Moves;
+                if (MoveMethods.Moves > MoveMethods.MinMoves && MoveMethods.MinMoves > 0) return false;
+                MoveMethods.MinMoves = MoveMethods.Moves;
+                MoveMethods.CoordinatesToDestination.Reverse();
+                FileHelpers.WriteToFile(outputFileName, MoveMethods.CoordinatesToDestination, chessPiece);
                 return true;
             }
             return false;
