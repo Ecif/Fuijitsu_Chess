@@ -10,14 +10,13 @@ All input files are read from that folder and output files are found from that f
 E.g:
 "~\Fuijitsu_Chess\bin\Debug\SourceFiles\input.txt" 
 "~\Fuijitsu_Chess\bin\Debug\SourceFiles\output.txt"
+
 Parameters for running the application:
 "Fuijitsu_Chess.exe args[0] args[1]"
 args[0] = input file name
 args[1] = output file name
-
-
-
-
+E.g:
+"C:\Fuijitsu_Chess\bin\Debug>Fuijitsu_Chess.exe source.txt output.txt"
 
 
 INTRODUCTION FOR INPUT AND OUTPUT FILES:
